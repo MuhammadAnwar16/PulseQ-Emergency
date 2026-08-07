@@ -1,0 +1,1 @@
+"""Emergency API routes package."""

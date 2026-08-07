@@ -1,0 +1,34 @@
+# Node & Angular Dependencies
+/node_modules
+/.angular
+
+# Build Outputs
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Vercel Deployment
+/.vercel
+
+# Testing & Coverage
+/coverage
+
+# System & IDE Files
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment Files
+.env
+.env.local

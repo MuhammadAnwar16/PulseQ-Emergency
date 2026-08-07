@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: pulseq-emergency-backend
+    env: python
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: INTEGRATION_MODE
+        value: standalone
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PULSEQ_SHARED_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: "https://pulseq-emergency.vercel.app,http://localhost:4200,http://localhost:4201"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: pulseq-emergency-db
+          property: connectionString
+
+databases:
+  - name: pulseq-emergency-db
+    databaseName: pulseq_emergency
+    user: postgres
+    plan: free
