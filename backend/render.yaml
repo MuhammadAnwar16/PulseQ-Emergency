@@ -16,7 +16,7 @@ services:
       - key: PULSEQ_SHARED_SECRET
         generateValue: true
       - key: CORS_ORIGINS
-        value: "https://pulseq-emergency.vercel.app,http://localhost:4200,http://localhost:4201"
+        value: "https://pulse-q-emergency.vercel.app,http://localhost:4200,http://localhost:4201"
       - key: DATABASE_URL
         fromDatabase:
           name: pulseq-emergency-db
@@ -25,5 +25,5 @@ services:
 databases:
   - name: pulseq-emergency-db
     databaseName: pulseq_emergency
-    user: postgres
+    user: pulseq_emergency_user
     plan: free

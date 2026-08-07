@@ -35,7 +35,7 @@ class Settings:
         o.strip()
         for o in os.getenv(
             "CORS_ORIGINS",
-            "http://localhost:4200,http://localhost:4201,http://localhost:3000,http://127.0.0.1:4200,http://127.0.0.1:4201",
+            "https://pulse-q-emergency.vercel.app,http://localhost:4200,http://localhost:4201,http://localhost:3000,http://127.0.0.1:4200,http://127.0.0.1:4201",
         ).split(",")
         if o.strip()
     ]

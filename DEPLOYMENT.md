@@ -68,7 +68,7 @@ npx vercel --prod
 | `DATABASE_URL` | `postgresql://...` | Connection string to PostgreSQL instance |
 | `JWT_SECRET` | `<32-char-random-string>` | Secret key for signing JWT auth tokens |
 | `PULSEQ_SHARED_SECRET` | `<hmac-secret-key>` | Shared secret for PulseQ webhook verification |
-| `CORS_ORIGINS` | `https://your-app.vercel.app` | Allowed frontend origins |
+| `CORS_ORIGINS` | `https://pulse-q-emergency.vercel.app` | Allowed frontend origins |
 | `SEED_DEMO_DATA` | `true` | Seed initial ER Nurse account & doctor registry |
 
 ### Frontend (Vercel):
