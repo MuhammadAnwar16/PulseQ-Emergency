@@ -9,11 +9,13 @@ services:
         value: production
       - key: INTEGRATION_MODE
         value: standalone
+      - key: PULSEQ_API_BASE_URL
+        sync: false
+      - key: PULSEQ_SHARED_SECRET
+        sync: false
       - key: SEED_DEMO_DATA
         value: "true"
       - key: JWT_SECRET
-        generateValue: true
-      - key: PULSEQ_SHARED_SECRET
         generateValue: true
       - key: CORS_ORIGINS
         value: "https://pulse-q-emergency.vercel.app,http://localhost:4200,http://localhost:4201"

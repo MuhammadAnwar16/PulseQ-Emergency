@@ -19,7 +19,7 @@ import { AuthService } from '../../../core/services/auth.service';
         <form (ngSubmit)="onLogin()" class="login-form">
           <div class="form-group">
             <label>Email Address</label>
-            <input type="email" [(ngModel)]="email" name="email" required placeholder="nurse@pulseq-er.com">
+            <input type="email" [(ngModel)]="email" name="email" required placeholder="staff@hospital.com">
           </div>
 
           <div class="form-group">
@@ -77,8 +77,8 @@ export class LoginComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
 
-  email = 'nurse@pulseq-er.com';
-  password = 'password123';
+  email = '';
+  password = '';
   loading = false;
   errorMessage = '';
 
