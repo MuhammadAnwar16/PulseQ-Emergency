@@ -161,19 +161,24 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS Configuration: Enforce explicit allowlist in Production Mode (no wildcard regex)
-cors_kwargs = {
-    "allow_origins": settings.CORS_ORIGINS,
-    "allow_credentials": True,
-    "allow_methods": ["*"],
-    "allow_headers": ["*"],
-}
+# CORS Configuration: Support explicit origins + Vercel deployment domains
+cors_origins = set(settings.CORS_ORIGINS)
+cors_origins.update([
+    "https://pulse-q-emergency.vercel.app",
+    "https://pulseq-emergency.vercel.app",
+    "http://localhost:4200",
+    "http://localhost:4201",
+    "http://localhost:3000",
+])
 
-if settings.ENVIRONMENT.lower() not in ("production", "prod"):
-    # Dev mode only: Allow wildcard regex matching for all local dev ports
-    cors_kwargs["allow_origin_regex"] = r"https?://(localhost|127\.0\.0\.1)(:\d+)?"
-
-app.add_middleware(CORSMiddleware, **cors_kwargs)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=list(cors_origins),
+    allow_origin_regex=r"https?://.*\.vercel\.app|https?://(localhost|127\.0\.0\.1)(:\d+)?",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health", tags=["Health"])
