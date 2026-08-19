@@ -8,12 +8,26 @@ import { CriticalAlertsComponent } from './features/emergency/critical-alerts/cr
 import { PatientsComponent } from './features/emergency/patients/patients.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'emergency/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'auth/login', component: LoginComponent },
-  { path: 'emergency/dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  { path: 'emergency/triage', component: TriageComponent, canActivate: [authGuard] },
-  { path: 'emergency/bed-board', component: BedBoardComponent, canActivate: [authGuard] },
-  { path: 'emergency/critical-alerts', component: CriticalAlertsComponent, canActivate: [authGuard] },
-  { path: 'emergency/patients', component: PatientsComponent, canActivate: [authGuard] },
-  { path: '**', redirectTo: 'auth/login' }
+  { path: 'login', redirectTo: 'dashboard', pathMatch: 'full' },
+  
+  // Bare root paths
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'triage', component: TriageComponent },
+  { path: 'beds', component: BedBoardComponent },
+  { path: 'bed-board', component: BedBoardComponent },
+  { path: 'critical-alerts', component: CriticalAlertsComponent },
+  { path: 'patients', component: PatientsComponent },
+  
+  // Prefixed /emergency/ paths
+  { path: 'emergency', redirectTo: 'dashboard', pathMatch: 'full' },
+  { path: 'emergency/dashboard', component: DashboardComponent },
+  { path: 'emergency/triage', component: TriageComponent },
+  { path: 'emergency/beds', component: BedBoardComponent },
+  { path: 'emergency/bed-board', component: BedBoardComponent },
+  { path: 'emergency/critical-alerts', component: CriticalAlertsComponent },
+  { path: 'emergency/patients', component: PatientsComponent },
+  
+  { path: '**', redirectTo: 'dashboard' }
 ];

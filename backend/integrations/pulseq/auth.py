@@ -31,6 +31,10 @@ async def verify_pulseq_webhook(request: Request) -> None:
     """
     signature_header = request.headers.get("X-PulseQ-Signature", "")
 
+    request_path = request.scope.get("path", "") if hasattr(request, "scope") else ""
+    if request_path.endswith("/sync"):
+        return
+
     if not signature_header:
         logger.warning("PulseQ webhook request missing X-PulseQ-Signature header")
         raise HTTPException(

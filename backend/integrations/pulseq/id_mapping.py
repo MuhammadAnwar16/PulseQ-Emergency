@@ -84,6 +84,16 @@ def resolve_doctor(
         return existing.er_entity_id
 
     er_doctor_id = str(uuid.uuid4())
+    # Create corresponding ERDoctor registry entry to satisfy foreign key constraints
+    er_doc = ERDoctor(
+        id=er_doctor_id,
+        hospital_id=hospital_id,
+        full_name=doctor_name or "Dr. Unassigned",
+        specialty="General Medicine",
+        status="available"
+    )
+    db.add(er_doc)
+
     mapping = PulseQIDMapping(
         pulseq_entity_type="doctor",
         pulseq_id=pulseq_doctor_id,

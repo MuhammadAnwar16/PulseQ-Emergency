@@ -1,3 +1,4 @@
+import os
 import asyncio
 import logging
 from contextlib import asynccontextmanager
@@ -196,3 +197,13 @@ def health_check():
 app.include_router(auth.router, prefix=settings.API_V1_STR)
 app.include_router(emergency_portal.router, prefix=settings.API_V1_STR)
 app.include_router(realtime.router, prefix=f"{settings.API_V1_STR}/emergency")
+
+# PulseQ Integration Router (conditional check or when INTEGRATION_MODE=pulseq_connected)
+if settings.INTEGRATION_MODE == "pulseq_connected" or os.getenv("INTEGRATION_MODE") == "pulseq_connected":
+    try:
+        from integrations.pulseq.routes import router as pulseq_integration_router
+        app.include_router(pulseq_integration_router, prefix=settings.API_V1_STR)
+        logger.info("✅ PulseQ Emergency integration router mounted successfully")
+    except Exception as e:
+        logger.error(f"❌ Failed to mount PulseQ integration router: {e}")
+
