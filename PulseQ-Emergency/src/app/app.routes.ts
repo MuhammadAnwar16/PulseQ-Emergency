@@ -1,6 +1,4 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
-import { LoginComponent } from './features/auth/login/login.component';
 import { DashboardComponent } from './features/emergency/dashboard/dashboard.component';
 import { TriageComponent } from './features/emergency/triage/triage.component';
 import { BedBoardComponent } from './features/emergency/bed-board/bed-board.component';
@@ -9,7 +7,7 @@ import { PatientsComponent } from './features/emergency/patients/patients.compon
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'auth/login', component: LoginComponent },
+  { path: 'auth/login', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'login', redirectTo: 'dashboard', pathMatch: 'full' },
   
   // Bare root paths
